@@ -8,6 +8,7 @@ import { withDBContext, DBContextProps } from '../contexts/db'
 
 
 interface Props extends DBContextProps {
+  delta?: Delta,
   onChange?: (delta: Delta)=> void
 }
 interface State {}
@@ -27,9 +28,7 @@ export class Editor extends React.PureComponent<Props, State> {
       }
     })
     this.editor.on('text-change', e => this.props.onChange && this.props.onChange(this.editor.getContents()))
-
-
-    this.props.context.db.collection('drafts').doc('test').get().then(doc => this.editor.setContents(doc.data().delta.ops, 'silent'))
+    this.props.delta && this.editor.setContents(this.props.delta, 'silent')
   }
 
   public render() {

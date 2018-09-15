@@ -1,6 +1,6 @@
 *node_modules*
 .firebase
-functions/firebase-debug.log
+firebase-debug.log
 functions/lib
 public
 *.cache
