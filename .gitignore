@@ -1,0 +1,7 @@
+*node_modules*
+.firebase
+functions/firebase-debug.log
+functions/lib
+public
+*.cache
+.runtimeconfig.json
