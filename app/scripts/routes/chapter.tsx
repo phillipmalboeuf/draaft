@@ -24,13 +24,17 @@ export class ChapterEditor extends React.PureComponent<Props & RouteComponentPro
 
 
   componentDidMount() {
-    Chapter.get(this.props.match.params.id).then(chapter => this.setState({ chapter }))
+    this.fetchChapter()
+  }
+
+  public fetchChapter() {
+    return Chapter.get(this.props.match.params.id).then(chapter => this.setState({ chapter }))
   }
 
   public render() {
     return this.state.chapter && <>
       <h1>{this.state.chapter.title}</h1>
-      <Form id='chapter' collection='chapters' doc={this.state.chapter.id} values={this.state.chapter}>
+      <Form id='chapter' collection='chapters' doc={this.state.chapter.id} values={this.state.chapter} onSubmit={()=> this.fetchChapter()}>
         <Input name='title' label='Chapter Title' /><br />
         <Input name='contents' type='editor' />
       </Form>

@@ -1,7 +1,6 @@
 
 import * as React from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import { PureComponent } from 'react'
 
 import { Form, Input } from '../components/form'
 import { withAuthContext, AuthContextProps } from '../contexts/auth'
@@ -18,7 +17,7 @@ export class Login extends React.PureComponent<Props, State> {
     return <div>
       <h1>Login</h1>
       <Link to='/signup'>Don't yet have an account?</Link><br />
-      <Form id='login' onSubmit={values => this.props.context.auth.signInWithEmailAndPassword(values.email, values.password)}>
+      <Form id='login' cta='Login' onSubmit={values => this.props.context.auth.signInWithEmailAndPassword(values.email, values.password)} redirect='/me'>
         <Input type='email' name='email' label='Email address' placeholder='you@gmail.com' /><br />
         <Input type='password' name='password' label='Password' placeholder='********' /><br />
       </Form>

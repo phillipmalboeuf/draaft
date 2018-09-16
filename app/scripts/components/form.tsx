@@ -6,6 +6,7 @@ import { withDBContext, DBContextProps } from '../contexts/db'
 import { FormContext } from '../contexts/form'
 import { Button } from './button'
 import { Editor } from './editor'
+import { Redirect } from 'react-router';
 
 
 
@@ -13,6 +14,7 @@ interface Props extends DBContextProps {
   id: string,
   values?: { [key:string]: any },
   cta?: string,
+  redirect?: string,
   collection?: string,
   doc?: string,
   onSubmit?: (values: { [key:string]: any })=> Promise<any>
@@ -39,13 +41,17 @@ export class Form extends Component<Props, State> {
     this.setState({
       waiting: true
     })
-    
-    this.props.onSubmit && this.props.onSubmit(this.state.values)
-      .catch(()=> this.setState({
+
+    Promise.all([
+      this.props.onSubmit && this.props.onSubmit(this.state.values),
+      this.props.collection && this.props.context.db.collection(this.props.collection).doc(this.props.doc || this.props.context.db.collection(this.props.collection).doc().id).set(this.state.values)
+    ]).catch(()=> this.setState({
         waiting: false
       }))
-
-    this.props.collection && this.props.context.db.collection(this.props.collection).doc(this.props.doc).set(this.state.values)
+      .then(()=> this.setState({
+        waiting: false,
+        success: true
+      }))
   }
 
   change(key: string, value: any) {
@@ -68,6 +74,11 @@ export class Form extends Component<Props, State> {
       </FormContext.Provider>
       
       <Button label={this.state.waiting ? 'One moment...' : this.props.cta || 'Save'} submit disabled={this.state.waiting} onClick={this.submit.bind(this)} />
+
+      {this.state.success && <>
+        <br /><strong>Success!</strong>
+        {this.props.redirect && <Redirect to={this.props.redirect} />}
+      </>}
     </>
   }
 }

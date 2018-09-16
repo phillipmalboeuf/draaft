@@ -17,12 +17,10 @@ export class Signup extends React.PureComponent<Props, State> {
     return <div>
       <h1>Signup</h1>
       <Link to='/login'>Already have an account?</Link><br />
-      <Form id='signup' onSubmit={values => this.props.context.auth.createUserWithEmailAndPassword(values.email, values.password)}>
+      <Form id='signup' cta='Signup' onSubmit={values => this.props.context.auth.createUserWithEmailAndPassword(values.email, values.password)} redirect='/me'>
         <Input type='email' name='email' label='Email address' placeholder='you@gmail.com' /><br />
         <Input type='password' name='password' label='New password' placeholder='********' autoComplete='new-password' /><br />
       </Form>
-
-      {this.props.context.user && <Redirect to={`/me`} />}
     </div>
   }
 }
