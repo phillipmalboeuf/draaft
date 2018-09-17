@@ -4,12 +4,16 @@ import { Link } from 'react-router-dom'
 
 import { withDBContext, DBContextProps } from '../contexts/db'
 import { withAuthContext, AuthContextProps } from '../contexts/auth'
+import { Filters } from '../models/_model'
 import { Chapter } from '../models/chapter'
+
 import { Form, Input } from '../components/form'
 
 
 
-interface Props extends DBContextProps {}
+interface Props extends DBContextProps {
+  filters?: Filters
+}
 interface State {
   chapters: any[]
 }
@@ -31,12 +35,12 @@ export class Chapters extends React.PureComponent<Props & AuthContextProps, Stat
   }
 
   public fetchChapters() {
-    return Chapter.list().then(chapters => this.setState({ chapters }))
+    return Chapter.list(this.props.filters || []).then(chapters => this.setState({ chapters }))
   }
 
   public render() {
     return <>
-      {this.props.context.user && <Form id='new_chapter' collection='chapters' cta='Create' onSubmit={()=> this.fetchChapters()}>
+      {this.props.context.user && <Form id='new_chapter' model={Chapter} values={{user: this.props.context.user.uid}} onSubmit={()=> this.fetchChapters()} cta='Create'>
         <Input name='title' label='Start a new chapter' />
       </Form>}
       <ol>

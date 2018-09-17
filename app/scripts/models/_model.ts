@@ -12,19 +12,20 @@ export default class Model {
   static sort: Sort
   static properties: Properties = {}
 
-  static preprocess(data: any) {
+  static preprocess(data: Properties) {
+    delete data.id
     return Promise.resolve(data)
   }
 
-  static postprocess(data: any) {
-    return Promise.resolve(data)
+  static postprocess(doc: firebase.firestore.QueryDocumentSnapshot) {
+    return Promise.resolve({ id: doc.id, ...doc.data() })
   }
 
   static list(filters: Filters=[], limit=50, page=0) {
     return this.filtered(filters)
       .limit(limit)
       .get()
-      .then(snapshot => Promise.all(snapshot.docs.map(doc => this.postprocess({ id: doc.id, ...doc.data() }))))
+      .then(snapshot => Promise.all(snapshot.docs.map(doc => this.postprocess(doc))))
   }
 
   static count(filters: Filters=[]) {
@@ -35,7 +36,7 @@ export default class Model {
 
   static get(id: Id) {
     return db.collection(this.collection).doc(id).get()
-      .then(doc => this.postprocess({ id: doc.id, ...doc.data() }))
+      .then(doc => this.postprocess(doc))
   }
 
   static create(data: Properties) {

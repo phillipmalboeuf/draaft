@@ -1,12 +1,14 @@
 import React from 'react'
 import { Component, StatelessComponent } from 'react'
+import { Redirect } from 'react-router'
 import { set, get } from 'object-path'
 
 import { withDBContext, DBContextProps } from '../contexts/db'
 import { FormContext } from '../contexts/form'
 import { Button } from './button'
 import { Editor } from './editor'
-import { Redirect } from 'react-router';
+import Model from '../models/_model'
+
 
 
 
@@ -15,8 +17,8 @@ interface Props extends DBContextProps {
   values?: { [key:string]: any },
   cta?: string,
   redirect?: string,
-  collection?: string,
-  doc?: string,
+  model?: typeof Model,
+  modelId?: string,
   onSubmit?: (values: { [key:string]: any })=> Promise<any>
 }
 interface State {
@@ -44,10 +46,10 @@ export class Form extends Component<Props, State> {
 
     Promise.all([
       this.props.onSubmit && this.props.onSubmit(this.state.values),
-      this.props.collection && this.props.context.db.collection(this.props.collection).doc(this.props.doc || this.props.context.db.collection(this.props.collection).doc().id).set(this.state.values)
-    ]).catch(()=> this.setState({
-        waiting: false
-      }))
+      this.props.model && (this.props.modelId 
+        ? this.props.model.update(this.props.modelId, this.state.values)
+        : this.props.model.create(this.state.values))
+    ])
       .then(()=> this.setState({
         waiting: false,
         success: true

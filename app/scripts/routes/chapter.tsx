@@ -5,17 +5,21 @@ import { Link, RouteComponentProps } from 'react-router-dom'
 import { withDBContext, DBContextProps } from '../contexts/db'
 import { Chapter } from '../models/chapter'
 import { Form, Input } from '../components/form'
+import { withAuthContext, AuthContextProps } from '../contexts/auth'
+import { Editor } from '../components/editor';
+import { Button } from '../components/button';
 
 
-interface Props extends DBContextProps {}
-interface State {
+type Props = DBContextProps & AuthContextProps & RouteComponentProps<any>
+type State = {
   chapter: any
 }
 
 @withDBContext
-export class ChapterEditor extends React.PureComponent<Props & RouteComponentProps<any>, State> {
+@withAuthContext
+export class ChapterEditor extends React.PureComponent<Props, State> {
 
-  constructor(props: Props & RouteComponentProps<any>) {
+  constructor(props: Props) {
     super(props)
     this.state = {
       chapter: null
@@ -34,10 +38,19 @@ export class ChapterEditor extends React.PureComponent<Props & RouteComponentPro
   public render() {
     return this.state.chapter && <>
       <h1>{this.state.chapter.title}</h1>
-      <Form id='chapter' collection='chapters' doc={this.state.chapter.id} values={this.state.chapter} onSubmit={()=> this.fetchChapter()}>
-        <Input name='title' label='Chapter Title' /><br />
-        <Input name='contents' type='editor' />
-      </Form>
+      
+      {this.props.context.user && this.props.context.user.uid == this.state.chapter.user
+        ? <>
+          <Form id='chapter' model={Chapter} modelId={this.state.chapter.id} values={this.state.chapter} onSubmit={()=> this.fetchChapter()}>
+            <Input name='title' label='Chapter Title' /><br />
+            <Input name='contents' type='editor' />
+          </Form>
+
+          {this.state.chapter.public 
+          ? <Button label='Unpublish Chapter' onClick={()=> Chapter.update(this.state.chapter.id, { public: false }).then(()=> this.fetchChapter())} />
+          : <Button label='Publish Chapter' onClick={()=> Chapter.update(this.state.chapter.id, { public: true }).then(()=> this.fetchChapter())} />}
+        </>
+        : <Editor readOnly delta={this.state.chapter.contents} />}
     </>
   }
 }

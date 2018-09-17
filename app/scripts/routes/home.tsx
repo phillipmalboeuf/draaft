@@ -24,7 +24,7 @@ export class Home extends React.PureComponent<Props, State> {
           <Link to='/login'>Login</Link> / <Link to='/signup'>Create an account</Link>
         </>}
 
-        <Chapters />
+        <Chapters filters={[['public', '==', true]]} />
     </div>
   }
 }
