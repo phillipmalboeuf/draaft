@@ -1,21 +1,7 @@
 
-
-import * as React from 'react'
-import { render, hydrate } from 'react-dom'
-import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
-
-import { DBContext } from './contexts/db'
-import { AuthContext } from './contexts/auth'
-
-import { Home } from './routes/home'
-import { Login, Logout } from './routes/login'
-import { Signup } from './routes/signup'
-import { Me } from './routes/me'
-import { ChapterEditor } from './routes/chapter'
-
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
@@ -28,11 +14,26 @@ if (!firebase.apps.length) {
   })
 }
 
-export const db = firebase.firestore()
+
+import * as React from 'react'
+import { render, hydrate } from 'react-dom'
+import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
+
+import { DBContext } from './contexts/db'
+import { AuthContext } from './contexts/auth'
+
+import { Home } from './routes/home'
+import { Login, Logout } from './routes/login'
+import { Signup } from './routes/signup'
+import { Me } from './routes/me'
+import { ChapterEditor } from './routes/chapter'
+
+
+const db = firebase.firestore()
 db.settings({
   timestampsInSnapshots: true
 })
-export const auth = firebase.auth()
+const auth = firebase.auth()
 
 
 interface Props {}
@@ -57,8 +58,8 @@ class App extends React.PureComponent<Props, State> {
   }
 
   public render() {
-    return <DBContext.Provider value={{ db: db }}>
-      <AuthContext.Provider value={{ auth: auth, user: this.state.user }}>
+    return <DBContext.Provider value={{ db }}>
+      <AuthContext.Provider value={{ auth, user: this.state.user }}>
       <BrowserRouter>
         <>
           <header><Link to='/'>Draaft.net</Link></header>
