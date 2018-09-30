@@ -1,11 +1,5 @@
 
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-
-const db = firebase.firestore()
-db.settings({
-  timestampsInSnapshots: true
-})
+import { db } from '../clients/firebase'
 
 export type Properties = { [key: string]: any }
 export type Filters =  [string, '<' | '<=' | '==' | '>=' | '>', any][]

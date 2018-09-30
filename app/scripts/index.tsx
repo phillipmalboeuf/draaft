@@ -1,23 +1,9 @@
 
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
-
-if (!firebase.apps.length) {
-  firebase.initializeApp({
-    apiKey: 'AIzaSyAEFQMZtFRmGkIcmtFKf7bDp6d1st6nRtM',
-    authDomain: 'draaftnet.firebaseapp.com',
-    databaseURL: 'https://draaftnet.firebaseio.com',
-    projectId: 'draaftnet',
-    storageBucket: 'draaftnet.appspot.com',
-    messagingSenderId: '558595103121'
-  })
-}
-
-
 import * as React from 'react'
 import { render, hydrate } from 'react-dom'
 import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom'
+
+import { db, auth } from './clients/firebase'
 
 import { DBContext } from './contexts/db'
 import { AuthContext } from './contexts/auth'
@@ -27,13 +13,6 @@ import { Login, Logout } from './routes/login'
 import { Signup } from './routes/signup'
 import { Me } from './routes/me'
 import { ChapterEditor } from './routes/chapter'
-
-
-const db = firebase.firestore()
-db.settings({
-  timestampsInSnapshots: true
-})
-const auth = firebase.auth()
 
 
 interface Props {}
