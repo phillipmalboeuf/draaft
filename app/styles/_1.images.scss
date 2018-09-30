@@ -1,0 +1,39 @@
+// #IMAGES
+
+img {
+  display: block;
+  max-width: 100%;
+
+  .full_images &,
+  &.img--full {
+    width: 100%;
+  }
+}
+
+figure {
+  position: relative;
+  margin: 0;
+}
+
+  figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+
+    &.figcaption--middle {
+      @extend .grid;
+      @extend .grid--center;
+      @extend .grid--middle;
+
+      height: 100%;
+      width: 100%;
+    }
+
+    &.figcaption--bottom {
+      @extend .grid;
+      @extend .grid--center;
+      
+      width: 100%;
+    }
+  }

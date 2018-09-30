@@ -1,0 +1,14 @@
+
+
+// #ALERTS
+
+.alert {
+  color: $white;
+  background-color: $red;
+  // border: 1px solid ;
+  border-radius: $border_radius;
+  box-shadow: 0 2px 4px fade-out($red, 0.5);
+
+  padding: $rythm/2 $rythm;
+  margin: $rythm 0;
+}

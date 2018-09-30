@@ -1,0 +1,140 @@
+.button,
+button {
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+
+  color: $white;
+  text-decoration: none;
+  font-size: $base_size;
+  font-family: $alternate_font;
+  font-weight: bold;
+  text-align: center;
+
+  background: $black;
+  padding: $rythm/2 $rythm;
+  line-height: $rythm*1.5;
+  border: none;
+  border-radius: $border_radius;
+  box-shadow: 0 2px 4px fade-out($black, 0.9);
+
+  transition: transform $slow, box-shadow $slow;
+
+  & + & {
+    margin-left: $rythm;
+  }
+
+  &:hover,
+  &:focus {
+    color: $white;
+    background: $black--light;
+    text-decoration: none;
+
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px fade-out($black, 0.9);
+  }
+
+  &:active {
+    top: 1px;
+  }
+
+  &.button--grey {
+    color: $grey;
+    background: $grey--light;
+
+    &:hover,
+    &:focus {
+      color: $white;
+      background: $black;
+    }
+  }
+
+  &.button--black {
+    color: $white;
+    background: $black--light;
+
+    &:hover,
+    &:focus {
+      background: $black--dark;
+    }
+  }
+
+  &.button--big {
+    font-size: $medium_size;
+    padding: $rythm*2 $rythm*4;
+    border-radius: $border_radius*2;
+    box-shadow: 0 12px 24px fade-out($black, 0.9);
+
+    &:hover,
+    &:focus {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 28px fade-out($black, 0.9);
+    }
+  }
+
+  &.button--outline {
+    color: inherit;
+    font-weight: normal;
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid transparent;
+
+
+    &.button--outline--active {
+      font-weight: bold;
+      border: 1px solid;
+    }
+
+    &:hover,
+    &:focus {
+      color: $white;
+      background: $black--dark;
+    }
+  }
+
+  &.button--transparent {
+    color: inherit;
+    font-weight: normal;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    text-align: inherit;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      color: $blue;
+    }
+  }
+
+  &.button--sup {
+    padding: $rythm/4 $rythm/2;
+    vertical-align: top;
+    position: absolute;
+
+    &:active {
+      top: auto;
+    }
+  }
+
+  &.button--full {
+    padding-right: 0;
+    padding-left: 0;
+    width: 100%;
+  }
+
+  &.button--faded {
+    opacity: 0.33;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.33;
+  }
+}

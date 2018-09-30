@@ -1,0 +1,232 @@
+
+
+// #LABELS
+
+label {
+  display: block;
+
+  color: $black--light;
+  font-size: $small_size;
+  font-weight: bold;
+
+  margin: 0 0 ($rythm/2);
+}
+
+
+// #INPUTS
+
+input[type="text"],
+input[type="password"],
+input[type="url"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="search"],
+input[type="file"],
+input[type="date"],
+input[type="datetime-local"],
+optgroup,
+select,
+textarea,
+.input {
+  position: relative;
+  width: 100%;
+
+  font-family: $alternate_font;
+  font-size: $slight_size;
+  font-weight: normal;
+  line-height: 1.2;
+
+  color: $black;
+  background: transparent;
+  padding: $rythm/1.333 $rythm/1.5;
+  margin-bottom: $rythm;
+  border: 1.5px solid $grey--light;
+  border-radius: $border_radius*2;
+  // box-shadow: 0 1px 6px fade-out($black, 0.9);
+
+  .col > &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:active {
+    top: 1px;
+  }
+
+  &:disabled,
+  form:disabled & {
+    opacity: 0.8;
+    background: transparent;
+    border: none;
+
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: $black;
+  }
+
+  &:focus {
+    color: $black--dark;
+    border-color: $black;
+  }
+
+  &.input--transparent {
+    border: none;
+    margin-bottom: 0;
+  }
+
+  &.input--inline {
+    display: inline-block;
+    width: auto;
+
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    padding: 0;
+  }
+
+  .input_group & {
+    margin-bottom: 0;
+  }
+}
+
+
+textarea {
+  // height: $rythm*4;
+  padding: $rythm/2;
+
+  &.textarea--one_line {
+    padding: $rythm/4;
+    height: auto;
+  }
+}
+
+
+select {
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+
+  & + .icon {
+    pointer-events: none;
+    position: relative;
+    z-index: 2;
+    display: block;
+
+    margin: (-$rythm*3) ($rythm) ($rythm*2.5) auto;
+
+    &:last-child {
+      margin-bottom: $rythm*1.5;
+    }
+  }
+}
+
+select[name='currency'] {
+  border: 0;
+  width: $rythm*4;
+
+  & + .icon {
+    margin-top: (-$rythm*2.666);
+  }
+}
+
+input[type="search"] {
+  box-sizing: border-box;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+  position: relative;
+
+  display: none;
+
+  & + label {
+    @extend .grid;
+    @extend .grid--nowrap;
+    @extend .grid--middle;
+
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    font-size: inherit;
+    margin: 0;
+    color: $grey--dark;
+
+    &:hover,
+    input:focus + & {
+      color: $grey--dark;
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      display: inline-block;
+
+      margin: 0 $rythm/4 0 0;
+    }
+
+    &:before {
+      width: $base_size;
+      height: $base_size;
+
+      border: 2px solid;
+      border-radius: $border_radius;
+    }
+
+    &:after {
+      content: "";
+      
+      position: absolute;
+      left: 0;
+      color: $white;
+      width: $base_size;
+      text-align: center;
+    }
+  }
+
+  &:checked {
+
+    & + label {
+      color: $black;
+
+      &:before {
+        background-color: $black;
+      }
+
+      &:after {
+        content: "✔";
+      }
+    }
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+input[type="radio"] {
+  & + label {
+    &:before,
+    &:after {
+      border-radius: 50%;
+    }
+  }
+}
+
+input[type="file"] {
+  display: block;
+}
+
+
+
+
+:focus {
+  outline: none;
+  -moz-outline-style: none;
+}
+
+::-webkit-input-placeholder, ::-webkit-input-placeholder { color: $grey--dark; }
+:-moz-placeholder, :-moz-placeholder { color: $grey--dark; }

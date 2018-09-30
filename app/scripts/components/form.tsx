@@ -95,7 +95,7 @@ export const Input: StatelessComponent<{
 }> = (props)=> {
   return <FormContext.Consumer>
     {context => <>
-      {props.label && <><label htmlFor={`${context.form_id}_${props.name}`}>{props.label}</label><br /></>}
+      {props.label && <label htmlFor={`${context.form_id}_${props.name}`}>{props.label}</label>}
 
 
       { ({

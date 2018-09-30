@@ -1,0 +1,25 @@
+
+
+// #BOXES
+
+.boxes {
+  @extend .grid;
+  @extend .grid--stretch;
+}
+
+  .box {
+    @extend .padded;
+    @extend .grid;
+    @extend .grid--middle;
+
+    height: 53.333vh;
+    width: 33.333vw;
+
+    background: $grey--light;
+    border: $gutter solid $white;
+
+    &.box--full {
+      height: 100vh;
+      width: 100vw;
+    }
+  }

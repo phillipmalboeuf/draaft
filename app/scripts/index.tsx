@@ -41,7 +41,7 @@ class App extends React.PureComponent<Props, State> {
       <AuthContext.Provider value={{ auth, user: this.state.user }}>
       <BrowserRouter>
         <>
-          <header><Link to='/'>Draaft.net</Link></header>
+          <header><Link to='/'><strong>Draaft</strong></Link></header>
           <Switch>
             <Route exact path='/me' component={Me} />
             <Route exact path='/signup' component={Signup} />

@@ -15,7 +15,6 @@ export class Home extends React.PureComponent<Props, State> {
 
   public render() {
     return <div>
-      <h1>Home</h1>
       {this.props.context.user
         ? <>
           <p>Hi <Link to='/me'>{this.props.context.user.email}</Link></p>

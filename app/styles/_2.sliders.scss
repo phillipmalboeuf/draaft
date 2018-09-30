@@ -1,0 +1,36 @@
+
+// #SLIDERS
+
+.slider {
+  position: relative;
+  padding-bottom: $rythm*6;
+}
+
+  .slide {
+    width: 100%;
+  }
+
+  .flickity-viewport {
+    overflow: visible;
+    // transition: height $slow;
+  }
+
+  .flickity-page-dots {
+    bottom: 0;
+    text-align: left;
+
+    .dot {
+      width: $rythm*10;
+      height: 3px;
+      border-radius: 0;
+      margin: 0;
+      opacity: 1;
+
+      background: $black;
+    }
+
+    .is-selected ~ .dot {
+      background: $grey--light;
+    }
+  }
+  

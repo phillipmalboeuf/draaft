@@ -1,0 +1,29 @@
+
+
+// #TAGS
+.pills,
+.tags {
+
+}
+
+  .pill,
+  .tag {
+    display: inline-block;
+    color: $black;
+
+    padding: $rythm/6 $rythm/3;
+    background-color: $grey--light;
+    border-radius: $border_radius;
+
+    margin: $rythm/10 $rythm/6 $rythm/10 0;
+
+    label {
+      margin-bottom: 0;
+    }
+  }
+
+  .pill {
+    border-radius: 1em;
+    font-weight: normal;
+    padding: $rythm/4 $rythm/2;
+  }

@@ -1,0 +1,15 @@
+// #HEADER
+
+header {
+  position: fixed;
+  padding: $rythm;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  pointer-events: none;
+
+  a, button, .overlay {
+    pointer-events: auto;
+  }
+}
