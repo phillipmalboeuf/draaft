@@ -5,3 +5,4 @@ functions/lib
 public
 *.cache
 .runtimeconfig.json
+_ignore
