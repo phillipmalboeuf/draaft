@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const Button: React.SFC<Props> = (props) => {
-  const className = `button${props.big ? ' button--big' : ''}}`
+  const className = `button${props.big ? ' button--big' : ''}`
 
   return props.to
     ? <Link className={className} to={props.to}>{props.label}</Link>
