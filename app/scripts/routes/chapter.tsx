@@ -3,11 +3,12 @@ import * as React from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
 
 import { withDBContext, DBContextProps } from '../contexts/db'
+import { withAuthContext, AuthContextProps } from '../contexts/auth'
+
 import { Chapter } from '../models/chapter'
 import { Form, Input } from '../components/form'
-import { withAuthContext, AuthContextProps } from '../contexts/auth'
-import { Editor } from '../components/editor';
-import { Button } from '../components/button';
+import { Editor } from '../components/editor'
+import { Button } from '../components/button'
 
 
 type Props = DBContextProps & AuthContextProps & RouteComponentProps<any>

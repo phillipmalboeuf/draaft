@@ -6,7 +6,6 @@
 // #BODY
 
 html {
-  padding-bottom: 0 !important;
   overflow-x: hidden;
 
   &.noscroll {
@@ -18,12 +17,33 @@ body {
   
 }
 
+header,
+footer {
+  position: fixed;
+  padding: $rythm;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  pointer-events: none;
+
+  a, button, .overlay {
+    pointer-events: auto;
+  }
+}
+
+footer {
+  top: auto;
+  bottom: 0;
+}
+
 
 // #MAIN
 
 .main {
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
+  padding: $rythm 17vw;
   overflow-y: hidden;
 }
 

@@ -5,7 +5,6 @@
 label {
   display: block;
 
-  color: $black--light;
   font-size: $small_size;
   font-weight: bold;
 
@@ -37,7 +36,7 @@ textarea,
   font-weight: normal;
   line-height: 1.2;
 
-  color: $black;
+  color: inherit;
   background: transparent;
   padding: $rythm/1.333 $rythm/1.5;
   margin-bottom: $rythm;

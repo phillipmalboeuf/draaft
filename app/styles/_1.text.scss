@@ -22,8 +22,7 @@ html {
 }
 
 body {
-  color: $black--dark;
-  background-color: $white;
+  
 }
 
 ::selection {
@@ -34,7 +33,13 @@ body {
 // #MAIN
 
 .main {
+  color: $black--dark;
   background-color: $white;
+
+  &.dark {
+    color: $white;
+    background-color: $black;
+  }
 }
 
 
@@ -149,7 +154,7 @@ a {
 
   &:focus,
   &:hover {
-    color: $blue;
+    color: $grey;
     transform: translateY(-2px);
   }
 

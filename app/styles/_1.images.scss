@@ -8,6 +8,11 @@ img {
   &.img--full {
     width: 100%;
   }
+
+  .ql-snow .ql-editor & {
+    max-width: $rythm * 40;
+    margin: $rythm*2;
+  }
 }
 
 figure {

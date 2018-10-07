@@ -40,9 +40,6 @@ export class Chapters extends React.PureComponent<Props & AuthContextProps, Stat
 
   public render() {
     return <>
-      {this.props.context.user && <Form id='new_chapter' model={Chapter} values={{user: this.props.context.user.uid}} onSubmit={()=> this.fetchChapters()} cta='Create'>
-        <Input name='title' label='Start a new chapter' />
-      </Form>}
       <ol>
         {this.state.chapters && this.state.chapters.map(chapter => <li key={chapter.id}>
           <Link to={`/chapters/${chapter.id}`}>{chapter.title}</Link>

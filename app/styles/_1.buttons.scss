@@ -39,6 +39,16 @@ button {
     top: 1px;
   }
 
+  .dark & {
+    color: $black--dark;
+    background: $white;
+
+    &:hover,
+    &:focus {
+      background: $grey--light;
+    }
+  }
+
   &.button--grey {
     color: $grey;
     background: $grey--light;
@@ -47,16 +57,6 @@ button {
     &:focus {
       color: $white;
       background: $black;
-    }
-  }
-
-  &.button--black {
-    color: $white;
-    background: $black--light;
-
-    &:hover,
-    &:focus {
-      background: $black--dark;
     }
   }
 
