@@ -26,19 +26,23 @@ interface ThirdProps {
 }
 
 export const Third: React.SFC<ThirdProps> = (props) => {
-  return <Col size={`1of3 col--tablet_portrait--8of12 col--phone--12of12`} style={props.style}>{props.children}</Col>
+  return <Col size={`1of3`} style={props.style}>{props.children}</Col>
 }
 
 export const TwoThirds: React.SFC<ThirdProps> = (props) => {
-  return <Col size={`2of3 col--tablet_portrait--8of12 col--phone--12of12`} style={props.style}>{props.children}</Col>
+  return <Col size={`2of3`} style={props.style}>{props.children}</Col>
 }
 
 export const Quarter: React.SFC<ThirdProps> = (props) => {
-  return <Col size={`3of12 col--tablet_portrait--6of12`} style={props.style}>{props.children}</Col>
+  return <Col size={`3of12`} style={props.style}>{props.children}</Col>
+}
+
+export const ThreeQuarters: React.SFC<ThirdProps> = (props) => {
+  return <Col size={`9of12`} style={props.style}>{props.children}</Col>
 }
 
 export const Half: React.SFC<ThirdProps> = (props) => {
-  return <Col size={`6of12 col--tablet_portrait--12of12`} style={props.style}>{props.children}</Col>
+  return <Col size={`6of12`} style={props.style}>{props.children}</Col>
 }
 
 export const Full: React.SFC<ThirdProps> = (props) => {

@@ -1,0 +1,44 @@
+
+
+// #EDITOR
+
+.ql-container {
+  font-family: $body_font;
+  font-size: $base_size;
+
+  &.ql-snow {
+    border: none;
+  }
+}
+
+  .ql-snow .ql-editor {
+    line-height: inherit;
+    padding: 0;
+    margin-bottom: $rythm*2;
+
+    &.ql-blank::before {
+      color: $grey;
+      font-style: normal;
+      left: 0;
+    }
+
+    img {
+      max-width: $rythm*40;
+    }
+  }
+
+  .ql-toolbar.ql-snow {
+    font-family: $body_font;
+    padding: $rythm/2 $rythm/4;
+    margin-bottom: $rythm;
+    border: 1px solid $grey--light;
+    border-radius: $border_radius;
+
+    .ql-formats {
+      margin-right: $rythm*1.5;
+    }
+
+    button {
+      margin-left: 0;
+    }
+  }

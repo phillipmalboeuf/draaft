@@ -9,6 +9,7 @@ import { Chapter } from '../models/chapter'
 import { Form, Input } from '../components/form'
 import { Editor } from '../components/editor'
 import { Button } from '../components/button'
+import { Grid, Col, Quarter, ThreeQuarters } from '../components/grid'
 
 
 type Props = DBContextProps & AuthContextProps & RouteComponentProps<any>
@@ -38,20 +39,33 @@ export class ChapterEditor extends React.PureComponent<Props, State> {
 
   public render() {
     return this.state.chapter && <>
-      <h1>{this.state.chapter.title}</h1>
       
       {this.props.context.user && this.props.context.user.uid == this.state.chapter.user
-        ? <>
-          <Form id='chapter' model={Chapter} modelId={this.state.chapter.id} values={this.state.chapter} onSubmit={()=> this.fetchChapter()}>
-            <Input name='title' label='Chapter Title' /><br />
-            <Input name='contents' type='editor' />
-          </Form>
+        ?< Form id='chapter' model={Chapter} modelId={this.state.chapter.id} values={this.state.chapter} onSubmit={()=> this.fetchChapter()}>
+          <Grid guttered>
+            <ThreeQuarters>
+              <Input name='title' label='Chapter Title' /><br />
+              <Input name='contents' type='editor' />
 
-          {this.state.chapter.public 
-          ? <Button label='Unpublish Chapter' onClick={()=> Chapter.update(this.state.chapter.id, { public: false }).then(()=> this.fetchChapter())} />
-          : <Button label='Publish Chapter' onClick={()=> Chapter.update(this.state.chapter.id, { public: true }).then(()=> this.fetchChapter())} />}
-        </>
-        : <Editor readOnly delta={this.state.chapter.contents} />}
+              {/* {this.state.chapter.public 
+              ? <Button label='Unpublish Chapter' onClick={()=> Chapter.update(this.state.chapter.id, { public: false }).then(()=> this.fetchChapter())} />
+              : <Button label='Publish Chapter' onClick={()=> Chapter.update(this.state.chapter.id, { public: true }).then(()=> this.fetchChapter())} />} */}
+            </ThreeQuarters>
+            <Quarter>
+              <Input name='date' label='An associated date' />
+            </Quarter>
+          </Grid>
+        </Form> 
+        : <Grid guttered>
+          <ThreeQuarters>
+            <h1>{this.state.chapter.title}</h1>
+            <Editor readOnly delta={this.state.chapter.contents} />
+          </ThreeQuarters>
+
+          <Quarter>
+            
+          </Quarter>
+        </Grid>}
     </>
   }
 }
