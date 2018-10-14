@@ -8,11 +8,12 @@ interface Props {
   disabled?: boolean,
   submit?: boolean,
   big?: boolean,
+  transparent?: boolean,
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export const Button: React.SFC<Props> = (props) => {
-  const className = `button${props.big ? ' button--big' : ''}`
+  const className = `button${props.big ? ' button--big' : ''}${props.transparent ? ' button--transparent' : ''}`
 
   return props.to
     ? <Link className={className} to={props.to}>{props.label}</Link>

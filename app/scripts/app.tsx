@@ -32,11 +32,12 @@ class App extends React.PureComponent<Props, State> {
     super(props)
     this.state = {
       loading: true,
-      theme: 'light'
+      theme: localStorage.getItem('theme') || 'light'
     }
   }
 
   switchTheme(theme: string) {
+    localStorage.setItem('theme', theme)
     this.setState({ theme })
   }
 

@@ -5,10 +5,15 @@
 label {
   display: block;
 
+  color: $black;
   font-size: $small_size;
   font-weight: bold;
 
   margin: 0 0 ($rythm/2);
+
+  .dark & {
+    color: $grey--light;
+  }
 }
 
 
@@ -40,9 +45,13 @@ textarea,
   background: transparent;
   padding: $rythm/1.333 $rythm/1.5;
   margin-bottom: $rythm;
-  border: 1.5px solid $grey--light;
-  border-radius: $border_radius*2;
+  border: 1px solid $grey--light;
+  border-radius: $border_radius;
   // box-shadow: 0 1px 6px fade-out($black, 0.9);
+
+  .dark & {
+    border-color: $black--light;
+  }
 
   .col > &:last-child {
     margin-bottom: 0;
@@ -62,12 +71,19 @@ textarea,
   }
 
   &:hover {
-    border-color: $black;
+    border-color: $black--light;
+
+    .dark & {
+      border-color: $grey;
+    }
   }
 
   &:focus {
-    color: $black--dark;
-    border-color: $black;
+    border-color: $black--dark;
+
+    .dark & {
+      border-color: $grey--light;
+    }
   }
 
   &.input--transparent {
@@ -152,12 +168,6 @@ input[type="radio"] {
     position: relative;
     font-size: inherit;
     margin: 0;
-    color: $grey--dark;
-
-    &:hover,
-    input:focus + & {
-      color: $grey--dark;
-    }
 
     &:before,
     &:after {
@@ -227,5 +237,5 @@ input[type="file"] {
   -moz-outline-style: none;
 }
 
-::-webkit-input-placeholder, ::-webkit-input-placeholder { color: $grey--dark; }
-:-moz-placeholder, :-moz-placeholder { color: $grey--dark; }
+::-webkit-input-placeholder, ::-webkit-input-placeholder { color: $grey; }
+:-moz-placeholder, :-moz-placeholder { color: $grey; }

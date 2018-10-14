@@ -105,6 +105,15 @@ button {
     &:hover,
     &:focus {
       color: $blue;
+      background: transparent;
+    }
+
+    .dark & {
+      &:hover,
+      &:focus {
+        color: $blue;
+        background: transparent;
+      }
     }
   }
 

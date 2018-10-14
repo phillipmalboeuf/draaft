@@ -31,7 +31,8 @@ export class Footer extends React.PureComponent<Props & AuthContextProps & Theme
           <Link to='/'>Life stories</Link>
         </Col>
         <Col>
-          <Button label='Theme' onClick={()=> this.props.context.switchTheme(this.props.context.theme === 'light' ? 'dark' : 'light')} />
+          <Button transparent big label={this.props.context.theme === 'light' ? '○' : '●'} onClick={()=> this.props.context.switchTheme('light')} />
+          <Button transparent big label={this.props.context.theme === 'light' ? '●' : '○'} onClick={()=> this.props.context.switchTheme('dark')} />
         </Col>
       </Grid>
     </footer>

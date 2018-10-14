@@ -50,6 +50,10 @@
     background-color: $white;
     box-shadow: 0 2px 4px fade-out($black, 0.9);
 
+    .dark & {
+      background-color: $black--dark;
+    }
+
     &.overlay__container--wider {
       max-width: $max_width/2;
     }
