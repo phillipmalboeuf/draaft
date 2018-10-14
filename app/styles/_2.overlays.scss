@@ -7,13 +7,19 @@
   @extend .grid--center;
 
   position: fixed;
-  top: 0;
-  left: 0;
+  top: $rythm*5;
+  right: $rythm;
+  width: auto;
 
-  width: 100vw;
-  height: 100vh;
   overflow-y: auto;
   z-index: 400;
+
+  &.overlay--full {
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+  }
 }
 
   button.overlay__back {
@@ -37,16 +43,16 @@
   }
 
   .overlay__container {
-    @extend .padded;
     position: relative;
+    padding: $rythm*1.5;
 
     width: 100%;
     max-width: $max_width/3;
     max-height: 90vh;
     overflow-y: auto;
 
-    border: none;
-    border-radius: $border_radius;
+    border: 1px solid;
+    // border-radius: $border_radius;
     background-color: $white;
     box-shadow: 0 2px 4px fade-out($black, 0.9);
 
