@@ -2,6 +2,10 @@
 
 // #EDITOR
 
+.editor {
+  position: relative;
+}
+
 .ql-container {
   font-family: $body_font;
   font-size: $base_size;
@@ -25,14 +29,31 @@
     img {
       max-width: $rythm*40;
     }
+
+    &:active {
+      top: 1px;
+    }
   }
 
   .ql-toolbar.ql-snow {
     font-family: $body_font;
     padding: $rythm/2 $rythm/4;
-    margin-bottom: $rythm;
+    width: 444px;
+    background: $white;
     border: 1px solid $grey--light;
     border-radius: $border_radius;
+
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translate(-50%, -120%);
+
+    &.toolbar--show {
+      opacity: 1;
+      visibility: visible;
+    }
 
     .ql-formats {
       margin-right: $rythm*1.5;

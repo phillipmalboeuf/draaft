@@ -18,7 +18,7 @@ export default class Model {
   }
 
   static postprocess(doc: firebase.firestore.QueryDocumentSnapshot) {
-    return Promise.resolve({ id: doc.id, ...doc.data() })
+    return Promise.resolve({ id: doc.id, ...doc.data() } as { id: Id, [key: string]: any })
   }
 
   static list(filters: Filters=[], limit=50, page=0) {
