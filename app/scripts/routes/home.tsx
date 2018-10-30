@@ -15,15 +15,9 @@ export class Home extends React.PureComponent<Props, State> {
 
   public render() {
     return <div>
-      {/* {this.props.context.user
-        ? <>
-          <p>Hi <Link to='/me'>{this.props.context.user.email}</Link></p>
-        </>
-        : <>
-          <Link to='/login'>Login</Link> / <Link to='/signup'>Create an account</Link>
-        </>} */}
+      <h1 className='text_center big_bottom'>Read stories from the community</h1>
 
-        <Chapters filters={[['public', '==', true]]} />
+      <Chapters filters={[['public', '==', true]]} />
     </div>
   }
 }

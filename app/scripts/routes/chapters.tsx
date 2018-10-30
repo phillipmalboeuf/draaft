@@ -8,6 +8,7 @@ import { Filters } from '../models/_model'
 import { Chapter } from '../models/chapter'
 
 import { Form, Input } from '../components/form'
+import { Grid, Quarter, TwoThirds, Col } from '../components/grid';
 
 
 
@@ -40,11 +41,18 @@ export class Chapters extends React.PureComponent<Props & AuthContextProps, Stat
 
   public render() {
     return <>
-      <ol>
-        {this.state.chapters && this.state.chapters.map(chapter => <li key={chapter.id}>
-          <Link to={`/chapters/${chapter.id}`}>{chapter.title}</Link>
-        </li>)}
-      </ol>
+      {this.state.chapters && this.state.chapters.map(chapter => <Link to={`/chapters/${chapter.id}`} key={chapter.id}>
+        <Grid guttered spaced>
+          <Col>PM</Col>
+          <TwoThirds>
+            <p className='slight'>
+              {chapter.title}<br />
+              {chapter.excerpt}
+            </p>
+          </TwoThirds>
+          <Col>{chapter.date}</Col>
+        </Grid>
+      </Link>)}
     </>
   }
 }

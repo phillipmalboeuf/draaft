@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 
 import { withAuthContext, AuthContextProps } from '../contexts/auth'
 
-import { Grid, Col } from './grid'
+import { Grid, Col, TwoThirds } from './grid'
 import { Button } from './button'
-import { Overlay } from './overlay';
+import { Overlay } from './overlay'
 
 
 interface Props {}
@@ -28,10 +28,15 @@ export class Header extends React.PureComponent<Props & AuthContextProps, State>
         <Col>
           <Link to='/'><strong>Draaft</strong></Link>
         </Col>
+        <TwoThirds>
+          {this.props.context.user
+          ? <Link to='/me'>Welcome {this.props.context.user.email}</Link>
+          : <></>}
+        </TwoThirds>
         <Col>
           {this.props.context.user
-          ? <Button label='+' to='/new_chapter' />
-          : <Button label='Sign in' to='/login' />}
+          ? <Link className='underline' to='/new_chapter'>Write a new entry</Link>
+          : <Link className='underline' to='/login'>Sign in</Link>}
 
           &nbsp;&nbsp;&nbsp;
 

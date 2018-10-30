@@ -61,7 +61,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: $big_size;
-  line-height: $rythm*3.5;
+  font-weight: normal;
+  line-height: $rythm*3.33;
 
   &.h1--giant {
     font-size: $giant_size;
