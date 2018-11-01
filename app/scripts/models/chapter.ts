@@ -6,6 +6,7 @@ export class Chapter extends Model {
   static collection = 'chapters'
 
   static postprocess(doc: firebase.firestore.QueryDocumentSnapshot) {
+    
     return super.postprocess(doc).then(doc => {
       let editor = new Quill(document.createElement('div'))
       editor.setContents(doc.contents)

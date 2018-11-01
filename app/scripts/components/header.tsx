@@ -30,7 +30,7 @@ export class Header extends React.PureComponent<Props & AuthContextProps, State>
         </Col>
         <TwoThirds>
           {this.props.context.user
-          ? <Link to='/me'>Welcome {this.props.context.user.email}</Link>
+          ? <Link to='/me'>Welcome {this.props.context.user.displayName}</Link>
           : <></>}
         </TwoThirds>
         <Col>

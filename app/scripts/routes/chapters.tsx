@@ -8,7 +8,7 @@ import { Filters } from '../models/_model'
 import { Chapter } from '../models/chapter'
 
 import { Form, Input } from '../components/form'
-import { Grid, Quarter, TwoThirds, Col } from '../components/grid';
+import { Grid, Quarter, TwoThirds, Col } from '../components/grid'
 
 
 
@@ -41,18 +41,23 @@ export class Chapters extends React.PureComponent<Props & AuthContextProps, Stat
 
   public render() {
     return <>
-      {this.state.chapters && this.state.chapters.map(chapter => <Link to={`/chapters/${chapter.id}`} key={chapter.id}>
-        <Grid guttered spaced>
-          <Col>PM</Col>
-          <TwoThirds>
-            <p className='slight'>
+      {this.state.chapters && this.state.chapters.map(chapter =>
+      <Grid guttered spaced key={chapter.id}>
+        <Col size='1of12'>
+          {this.props.context.user && chapter.user === this.props.context.user.uid
+          ? <Link className='underline' to={`/chapters/${chapter.id}`}>Edit</Link>
+          : <Link to={`/people/${chapter.user}`}>{chapter.by}</Link>}
+        </Col>
+        <TwoThirds>
+          <Link className='slight' to={`/chapters/${chapter.id}`}>
+            <p>
               {chapter.title}<br />
               {chapter.excerpt}
             </p>
-          </TwoThirds>
-          <Col>{chapter.date}</Col>
-        </Grid>
-      </Link>)}
+          </Link>
+        </TwoThirds>
+        <Col size='1of12'>{chapter.date}</Col>
+      </Grid>)}
     </>
   }
 }

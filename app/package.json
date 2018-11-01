@@ -6,6 +6,7 @@
   "scripts": {
     "build": "parcel build index.html -d ../public",
     "watch": "parcel watch index.html -d ../public",
+    "serve": "npm run build && firebase serve --only hosting",
     "deploy": "npm run build && firebase deploy --only hosting"
   },
   "keywords": [],

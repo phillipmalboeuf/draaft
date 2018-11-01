@@ -24,7 +24,8 @@ interface Props extends DBContextProps {
 interface State {
   values: { [key:string]: any },
   waiting: boolean,
-  success: boolean
+  success: boolean,
+  error?: string 
 }
 
 @withDBContext
@@ -52,8 +53,17 @@ export class Form extends Component<Props, State> {
     ])
       .then(()=> this.setState({
         waiting: false,
-        success: true
+        success: true,
+        error: undefined
       }))
+      .catch(e => {
+        console.error(e)
+
+        this.setState({
+          waiting: false,
+          error: e.message
+        })
+      })
   }
 
   change(key: string, value: any) {
@@ -76,6 +86,10 @@ export class Form extends Component<Props, State> {
       </FormContext.Provider>
       
       <Button label={this.state.waiting ? 'One moment...' : this.props.cta || 'Save'} submit disabled={this.state.waiting} onClick={this.submit.bind(this)} />
+
+      {this.state.error && <>
+        <br /><em className='red'>{this.state.error}</em>
+      </>}
 
       {this.state.success && <>
         <br /><strong>Success!</strong>
