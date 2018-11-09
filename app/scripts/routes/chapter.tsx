@@ -63,7 +63,7 @@ export class ChapterEditor extends React.PureComponent<Props, State> {
 
           <Quarter>
             <p>
-              <Link to='#' className='underline'>{this.state.chapter.by}</Link><br />
+              <Link to={`/people/${this.state.chapter.user}`} className='underline'>{this.state.chapter.by}</Link><br />
               {this.state.chapter.date}
             </p>
           </Quarter>
