@@ -3,7 +3,6 @@ import * as React from 'react'
 export const FormContext = React.createContext({
   form_id: undefined as string,
   values: {} as { [key:string]: any },
-  onSubmit: function(): void {},
   onChange: function(name: string, value: any): void {},
   waiting: false as boolean
 })
@@ -12,7 +11,6 @@ export const FormContext = React.createContext({
 export interface FormContextProps {
   context? : {
     values: { [key:string]: any },
-    onSubmit?: ()=> void,
     onChange?: (name: string, value: any)=> void
   }
 }

@@ -45,6 +45,10 @@ footer {
   min-height: 100vh;
   padding: 10vw 17vw;
   overflow-y: hidden;
+
+  @media #{$phone} {
+    padding: 17vw 10vw;
+  }
 }
 
 

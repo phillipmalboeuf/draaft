@@ -3,13 +3,17 @@
 // #LABELS
 
 label {
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
   display: block;
 
   color: $black;
   font-size: $small_size;
   font-weight: bold;
+  text-align: left;
 
-  margin: 0 0 ($rythm/2);
+  margin: 2px 0 (-$rythm*1.8) ($rythm/1.5);
 
   .dark & {
     color: $grey--light;
@@ -44,7 +48,7 @@ textarea,
   color: inherit;
   background: transparent;
   padding: $rythm/1.333 $rythm/1.5;
-  margin-bottom: $rythm;
+  margin-bottom: $rythm*1.5;
   border: 1px solid $grey--light;
   border-radius: $border_radius;
   // box-shadow: 0 1px 6px fade-out($black, 0.9);
@@ -59,6 +63,10 @@ textarea,
 
   &:active {
     top: 1px;
+  }
+
+  label + & {
+    padding-top: $rythm*1.666;
   }
 
   &:disabled,

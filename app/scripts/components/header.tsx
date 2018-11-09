@@ -29,14 +29,18 @@ export class Header extends React.PureComponent<Props & AuthContextProps, State>
           <Link to='/'><strong>Draaft</strong></Link>
         </Col>
         <TwoThirds>
+          <span className='hide_on_phone'>
           {this.props.context.user
-          ? <Link to='/me'>Welcome {this.props.context.user.displayName}</Link>
+          ? <Link to='/me'>Welcome, {this.props.context.user.displayName}</Link>
           : <></>}
+          </span>
         </TwoThirds>
         <Col>
+          <span className='hide_on_phone'>
           {this.props.context.user
           ? <Link className='underline' to='/new_chapter'>Write a new entry</Link>
           : <Link className='underline' to='/login'>Sign in</Link>}
+          </span>
 
           &nbsp;&nbsp;&nbsp;
 

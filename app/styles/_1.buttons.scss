@@ -7,13 +7,14 @@ button {
 
   color: $white;
   text-decoration: none;
-  font-size: $base_size;
+  font-size: $slight_size;
   font-family: $alternate_font;
-  font-weight: bold;
+  font-weight: normal;
+  letter-spacing: $letter_spacing;
   text-align: center;
 
   background: $black;
-  padding: $rythm/2 $rythm;
+  padding: $rythm $rythm*2;
   line-height: $rythm*1.5;
   border: none;
   border-radius: $border_radius;

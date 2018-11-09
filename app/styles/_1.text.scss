@@ -50,6 +50,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: $base_size;
   font-weight: bold;
   line-height: $rythm;
+  letter-spacing: $letter_spacing;
 
   color: inherit;
   margin: 0 0 $rythm;
@@ -62,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: $big_size;
   font-weight: normal;
-  line-height: $rythm*3.33;
+  line-height: $rythm*2.66;
 
   &.h1--giant {
     font-size: $giant_size;
@@ -190,7 +191,7 @@ ul {
 // #PARAGRAPHS
 
 form {
-  margin: 0 0 $rythm;
+  margin: 0 0 $rythm*2;
 
   &:last-child {
     margin-bottom: 0;

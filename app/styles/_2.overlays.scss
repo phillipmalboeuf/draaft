@@ -11,6 +11,11 @@
   right: $rythm;
   width: auto;
 
+  @media #{$phone} {
+    top: $rythm/2;
+    right: 0;
+  }
+
   overflow-y: auto;
   z-index: 400;
 
@@ -47,7 +52,7 @@
     padding: $rythm*1.5;
 
     width: 100%;
-    max-width: $max_width/3;
+    max-width: $max_width;
     max-height: 90vh;
     overflow-y: auto;
 
@@ -61,7 +66,7 @@
     }
 
     &.overlay__container--wider {
-      max-width: $max_width/2;
+      max-width: $max_width*2;
     }
   }
 

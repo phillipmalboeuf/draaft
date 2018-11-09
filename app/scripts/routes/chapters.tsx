@@ -13,7 +13,8 @@ import { Grid, Quarter, TwoThirds, Col } from '../components/grid'
 
 
 interface Props extends DBContextProps {
-  filters?: Filters
+  filters?: Filters,
+  empty?: JSX.Element
 }
 interface State {
   chapters: any[]
@@ -41,23 +42,26 @@ export class Chapters extends React.PureComponent<Props & AuthContextProps, Stat
 
   public render() {
     return <>
-      {this.state.chapters && this.state.chapters.map(chapter =>
-      <Grid guttered spaced key={chapter.id}>
-        <Col size='1of12'>
-          {this.props.context.user && chapter.user === this.props.context.user.uid
-          ? <Link className='underline' to={`/chapters/${chapter.id}`}>Edit</Link>
-          : <Link to={`/people/${chapter.user}`}>{chapter.by}</Link>}
-        </Col>
-        <TwoThirds>
-          <Link className='slight' to={`/chapters/${chapter.id}`}>
-            <p>
-              {chapter.title}<br />
-              {chapter.excerpt}
-            </p>
-          </Link>
-        </TwoThirds>
-        <Col size='1of12'>{chapter.date}</Col>
-      </Grid>)}
+      {this.state.chapters && (this.state.chapters.length > 0
+      ? this.state.chapters.map(chapter => <div className='medium_bottom' key={chapter.id}>
+        <Grid guttered spaced>
+          <Col size='1of12'>
+            {this.props.context.user && chapter.user === this.props.context.user.uid
+            ? <Link className='underline' to={`/chapters/${chapter.id}`}>Edit</Link>
+            : <Link to={`/people/${chapter.user}`}>{chapter.by}</Link>}
+          </Col>
+          <TwoThirds>
+            <Link className='slight' to={`/chapters/${chapter.id}`}>
+              <p>
+                {chapter.title}<br />
+                {chapter.excerpt}
+              </p>
+            </Link>
+          </TwoThirds>
+          <Col size='1of12'>{chapter.date}</Col>
+        </Grid>
+      </div>)
+      : this.props.empty || <em>No chapters found...</em>)}
     </>
   }
 }

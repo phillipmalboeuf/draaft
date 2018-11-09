@@ -21,18 +21,11 @@ export class Me extends React.PureComponent<Props, State> {
 
   public render() {
     return this.props.context.user
-    ? <Grid guttered spaced>
-      {/* <h1>Hi {this.props.context.user.email}</h1> */}
-      <TwoThirds>
-        <Chapters filters={[['user', '==', this.props.context.user.uid]]} />
-      </TwoThirds>
-      
-      <Quarter>
-        <Form id='user' onSubmit={(values: { displayName: string, photoURL: string })=> this.props.context.user.updateProfile(values)}>
-          <Input name='displayName' label='Display name' />
-        </Form>
-      </Quarter>
-    </Grid>
+    ? <Chapters filters={[['user', '==', this.props.context.user.uid]]} empty={<div className='max_width text_center'>
+      <h1 className='padded'>Think back to a moment in your life you want to write about.</h1>
+      <Button to='/new_chapter' label='Write your first chapter' />
+      <div className='padded'>Not inspired? <Link to='/' className='underline'>Explore what others are writing about</Link></div>
+    </div>} />
     : null
   }
 }

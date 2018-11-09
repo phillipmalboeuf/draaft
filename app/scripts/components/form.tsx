@@ -74,11 +74,10 @@ export class Form extends Component<Props, State> {
   }
 
   render() {
-    return <>
+    return <form id={this.props.id} onSubmit={this.submit.bind(this)}>
       <FormContext.Provider value={{
         form_id: this.props.id,
         values: this.state.values,
-        onSubmit: this.submit.bind(this),
         onChange: this.change.bind(this),
         waiting: this.state.waiting
       }}>
@@ -95,7 +94,7 @@ export class Form extends Component<Props, State> {
         <br /><strong>Success!</strong>
         {this.props.redirect && <Redirect to={this.props.redirect} />}
       </>}
-    </>
+    </form>
   }
 }
 

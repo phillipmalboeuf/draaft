@@ -14,15 +14,15 @@ interface State {}
 export class Login extends React.PureComponent<Props, State> {
 
   public render() {
-    return <div>
-      <h1>Login</h1>
-      <Link to='/signup'>Don't yet have an account?</Link><br />
+    return <div className='max_width text_center'>
+      <h1 className='padded'>Get some writing done.</h1>
+      
       <Form id='login' cta='Login' onSubmit={values => this.props.context.auth.signInWithEmailAndPassword(values.email, values.password)} redirect='/me'>
         <Input type='email' name='email' label='Email address' placeholder='you@gmail.com' /><br />
         <Input type='password' name='password' label='Password' placeholder='********' /><br />
       </Form>
 
-      {this.props.context.user && <Redirect to={`/me`} />}
+      Not a member? <Link to='/signup' className='underline'>Create an account</Link>
     </div>
   }
 }
