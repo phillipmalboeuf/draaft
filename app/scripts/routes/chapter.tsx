@@ -62,7 +62,10 @@ export class ChapterEditor extends React.PureComponent<Props, State> {
           </ThreeQuarters>
 
           <Quarter>
-            
+            <p>
+              <Link to='#' className='underline'>{this.state.chapter.by}</Link><br />
+              {this.state.chapter.date}
+            </p>
           </Quarter>
         </Grid>}
     </>
