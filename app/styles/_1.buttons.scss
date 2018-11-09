@@ -18,7 +18,7 @@ button {
   line-height: $rythm*1.5;
   border: none;
   border-radius: $border_radius;
-  // box-shadow: 0 2px 4px fade-out($black, 0.9);
+  box-shadow: 0 2px 4px fade-out($black, 0.88);
 
   // transition: transform $slow, box-shadow $slow;
 

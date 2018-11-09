@@ -40,7 +40,9 @@ export class Form extends Component<Props, State> {
     }
   }
 
-  submit() {
+  submit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
     this.setState({
       waiting: true
     })
@@ -91,7 +93,7 @@ export class Form extends Component<Props, State> {
       </>}
 
       {this.state.success && <>
-        <br /><strong>Success!</strong>
+        {/* <br /><strong>Success!</strong> */}
         {this.props.redirect && <Redirect to={this.props.redirect} />}
       </>}
     </form>
@@ -100,27 +102,41 @@ export class Form extends Component<Props, State> {
 
 export const Input: StatelessComponent<{
   name: string,
-  type?: 'password' | 'email' | 'editor',
-  label?: string,
+  type?: 'password' | 'email' | 'radios' | 'editor',
+  label?: string | JSX.Element,
   placeholder?: string,
   optional?: boolean,
-  autoComplete?: string
+  disabled?: boolean,
+  autoComplete?: string,
+  options?: {value: string | number, label: string | JSX.Element}[],
+  alternate?: boolean
 }> = (props)=> {
   return <FormContext.Consumer>
     {context => <>
-      {props.label && <label htmlFor={`${context.form_id}_${props.name}`}>{props.label}</label>}
-
-
       { ({
-        editor: <Editor delta={get(context.values, props.name)} onChange={delta => context.onChange(props.name, { ...delta })} />
-      } as any)[props.type] || <input name={props.name} id={`${context.form_id}_${props.name}`}
-        type={props.type ? props.type : 'text'}
-        value={get(context.values, props.name) || ''}
-        placeholder={props.placeholder}
-        required={props.optional ? false : true}
-        autoComplete={props.autoComplete}
-        onChange={e => context.onChange(props.name, e.currentTarget.value)} />}
-
+        editor: <Editor delta={get(context.values, props.name)}
+          placeholder={props.placeholder}
+          onChange={delta => context.onChange(props.name, { ...delta })} />,
+        radios: <div className='normal_bottom'>{props.options && props.options.map(option => <React.Fragment key={option.value}>
+          <input name={props.name} id={`${context.form_id}_${props.name}_${option.value}`}
+            type='radio'
+            value={option.value}
+            checked={get(context.values, props.name) === option.value}
+            disabled={props.disabled ? true : false}
+            onChange={e => context.onChange(props.name, e.currentTarget.value)} />
+          {option.label && <label htmlFor={`${context.form_id}_${props.name}_${option.value}`}>{option.label}</label>}
+        </React.Fragment>)}</div>
+      } as any)[props.type] || <>
+        {props.label && <label className={props.alternate ? 'label--alternate' : ''} htmlFor={`${context.form_id}_${props.name}`}>{props.label}</label>}
+        <input className={props.alternate ? 'input--alternate' : ''} name={props.name} id={`${context.form_id}_${props.name}`}
+          type={props.type ? props.type : 'text'}
+          value={get(context.values, props.name) || ''}
+          placeholder={props.placeholder}
+          required={props.optional ? false : true}
+          disabled={props.disabled ? true : false}
+          autoComplete={props.autoComplete}
+          onChange={e => context.onChange(props.name, e.currentTarget.value)} />
+      </>}
       
     </>}
   </FormContext.Consumer>

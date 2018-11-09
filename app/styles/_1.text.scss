@@ -146,9 +146,6 @@ a {
 
   color: inherit;
   text-decoration: none;
-  text-decoration-skip: ink;
-
-  transition: transform $slow;
 
   .underline_links & {
     text-decoration: underline;
@@ -156,8 +153,7 @@ a {
 
   &:focus,
   &:hover {
-    color: $grey;
-    transform: translateY(-2px);
+    color: $grey--dark;
   }
 
   &:active {

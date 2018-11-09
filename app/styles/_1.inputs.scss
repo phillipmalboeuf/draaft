@@ -12,8 +12,15 @@ label {
   font-size: $small_size;
   font-weight: bold;
   text-align: left;
+  line-height: 1.33;
 
-  margin: 2px 0 (-$rythm*1.8) ($rythm/1.5);
+  margin: 2px 0 (-$rythm*1.5) ($rythm/1.5);
+
+  &.label--alternate {
+    font-size: $base_size;
+    font-weight: normal;
+    margin: 0;
+  }
 
   .dark & {
     color: $grey--light;
@@ -49,7 +56,7 @@ textarea,
   background: transparent;
   padding: $rythm/1.333 $rythm/1.5;
   margin-bottom: $rythm*1.5;
-  border: 1px solid $grey--light;
+  border: 1px solid $grey--dark;
   border-radius: $border_radius;
   // box-shadow: 0 1px 6px fade-out($black, 0.9);
 
@@ -82,7 +89,7 @@ textarea,
     border-color: $black--light;
 
     .dark & {
-      border-color: $grey;
+      border-color: $grey--dark;
     }
   }
 
@@ -90,13 +97,15 @@ textarea,
     border-color: $black--dark;
 
     .dark & {
-      border-color: $grey--light;
+      border-color: $grey;
     }
   }
 
-  &.input--transparent {
+  &.input--alternate {
+    font-size: $medium_size;
+    padding: $rythm/1.333 0;
+    margin-bottom: $rythm*2;
     border: none;
-    margin-bottom: 0;
   }
 
   &.input--inline {
@@ -159,8 +168,7 @@ input[type="search"] {
   box-sizing: border-box;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type="checkbox"] {
   cursor: pointer;
   position: relative;
 
@@ -225,10 +233,39 @@ input[type="radio"] {
 }
 
 input[type="radio"] {
+  display: none;
+
   & + label {
-    &:before,
-    &:after {
-      border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    display: inline-block;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: $rythm/2;
+
+    text-align: center;
+    max-width: $rythm*14;
+    padding: $rythm;
+    border: 2px solid $grey;
+    border-radius: $border_radius;
+    background: $grey--light;
+
+    .dark & {
+      background: $black--light;
+      border-color: $grey--dark;
+    }
+
+    &:active {
+      top: 1px;
+    }
+  }
+
+  &:checked + label {
+    border-color: $black--dark;
+
+    .dark & {
+      border-color: $white;
     }
   }
 }
@@ -245,5 +282,5 @@ input[type="file"] {
   -moz-outline-style: none;
 }
 
-::-webkit-input-placeholder, ::-webkit-input-placeholder { color: $grey; }
-:-moz-placeholder, :-moz-placeholder { color: $grey; }
+::-webkit-input-placeholder { color: $grey; }
+:-moz-placeholder { color: $grey; }

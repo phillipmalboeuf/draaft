@@ -44,16 +44,14 @@ export class ChapterEditor extends React.PureComponent<Props, State> {
         ?< Form id='chapter' model={Chapter} modelId={this.state.chapter.id} values={this.state.chapter} onSubmit={()=> this.fetchChapter()}>
           <Grid guttered>
             <ThreeQuarters>
-              <Input name='title' label='Chapter Title' /><br />
-              <Input name='contents' type='editor' />
-
+              <Input name='date' alternate label='An associated date' />
+              <Input name='title' alternate label='Chapter Title' /><br />
+              <Input name='contents' type='editor' placeholder='I was standing in the rain...' />
+            </ThreeQuarters>
+            <Quarter>
               {this.state.chapter.public 
               ? <Button label='Unpublish Chapter' onClick={()=> Chapter.update(this.state.chapter.id, { public: false }).then(()=> this.fetchChapter())} />
               : <Button label='Publish Chapter' onClick={()=> Chapter.update(this.state.chapter.id, { public: true }).then(()=> this.fetchChapter())} />}
-            </ThreeQuarters>
-            <Quarter>
-              <Input name='date' label='An associated date' />
-              <Input name='by' label='By' />
             </Quarter>
           </Grid>
         </Form> 
