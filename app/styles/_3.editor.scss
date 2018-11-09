@@ -40,7 +40,7 @@
     padding: $rythm/2 $rythm/4;
     width: 444px;
     background: $white;
-    border: 1px solid $grey--light;
+    border: 1px solid $grey;
     border-radius: $border_radius;
 
     position: absolute;
@@ -61,5 +61,6 @@
 
     button {
       margin-left: 0;
+      box-shadow: none;
     }
   }

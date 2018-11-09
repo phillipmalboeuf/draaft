@@ -19,6 +19,7 @@ interface Props extends DBContextProps {
   redirect?: string,
   model?: typeof Model,
   modelId?: string,
+  autosave?: boolean,
   onSubmit?: (values: { [key:string]: any })=> Promise<any>
 }
 interface State {
@@ -31,6 +32,8 @@ interface State {
 @withDBContext
 export class Form extends Component<Props, State> {
 
+  private autosave: NodeJS.Timer = null
+
   constructor(props: Props) {
     super(props)
     this.state = {
@@ -40,8 +43,8 @@ export class Form extends Component<Props, State> {
     }
   }
 
-  submit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+  submit(e?: React.FormEvent<HTMLFormElement>) {
+    e && e.preventDefault()
 
     this.setState({
       waiting: true
@@ -71,8 +74,16 @@ export class Form extends Component<Props, State> {
   change(key: string, value: any) {
     set(this.state.values, key, value)
     this.setState({
-      values: this.state.values
+      values: this.state.values,
+      success: false
     })
+
+    if (this.props.autosave) {
+      clearTimeout(this.autosave)
+      this.autosave = setTimeout(()=> {
+        this.submit()
+      }, 500)
+    }
   }
 
   render() {
@@ -86,14 +97,16 @@ export class Form extends Component<Props, State> {
         {this.props.children}
       </FormContext.Provider>
       
-      <Button label={this.state.waiting ? 'One moment...' : this.props.cta || 'Save'} submit disabled={this.state.waiting} onClick={this.submit.bind(this)} />
+      {this.props.autosave 
+      ? this.state.waiting && <em>Autosaving...</em>
+      : <Button label={this.state.waiting ? 'One moment...' : this.props.cta || 'Save'} submit disabled={this.state.waiting} />}
 
       {this.state.error && <>
-        <br /><em className='red'>{this.state.error}</em>
+        <em className='red'>{this.state.error}</em>
       </>}
 
       {this.state.success && <>
-        {/* <br /><strong>Success!</strong> */}
+        <strong>Saved!</strong>
         {this.props.redirect && <Redirect to={this.props.redirect} />}
       </>}
     </form>

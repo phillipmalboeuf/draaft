@@ -41,7 +41,7 @@ export class ChapterEditor extends React.PureComponent<Props, State> {
     return this.state.chapter && <>
       
       {this.props.context.user && this.props.context.user.uid == this.state.chapter.user
-        ?< Form id='chapter' model={Chapter} modelId={this.state.chapter.id} values={this.state.chapter} onSubmit={()=> this.fetchChapter()}>
+        ?< Form id='chapter' autosave model={Chapter} modelId={this.state.chapter.id} values={this.state.chapter} onSubmit={()=> this.fetchChapter()}>
           <Grid guttered>
             <ThreeQuarters>
               <Input name='date' alternate label='An associated date' />
