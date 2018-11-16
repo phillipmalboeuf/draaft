@@ -129,6 +129,7 @@ export const Input: StatelessComponent<{
       { ({
         editor: <Editor delta={get(context.values, props.name)}
           placeholder={props.placeholder}
+          alternate={props.alternate}
           onChange={delta => context.onChange(props.name, { ...delta })} />,
         radios: <div className='normal_bottom'>{props.options && props.options.map(option => <React.Fragment key={option.value}>
           <input name={props.name} id={`${context.form_id}_${props.name}_${option.value}`}

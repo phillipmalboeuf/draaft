@@ -46,6 +46,7 @@ export class NoteReader extends React.PureComponent<Props, State> {
         <ThreeQuarters>
           <h1>{this.state.note.subject}</h1>
           <Editor readOnly delta={this.state.note.contents} />
+          <em>{this.state.note.signature}</em>
         </ThreeQuarters>
 
         <Quarter>

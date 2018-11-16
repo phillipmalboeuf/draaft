@@ -17,10 +17,12 @@ import { NewChapter } from './routes/new_chapter'
 import { ChapterEditor } from './routes/chapter'
 import { NewNote } from './routes/new_note'
 import { NoteReader } from './routes/note'
+import { Notes } from './routes/notes'
 import { PeopleView } from './routes/people'
 
 import { Header } from './components/header'
 import { Footer } from './components/footer'
+
 
 
 interface Props {}
@@ -68,6 +70,7 @@ class App extends React.PureComponent<Props, State> {
             <Route exact path='/chapters/:id' component={ChapterEditor} />
 
             <Route exact path='/new_note' component={NewNote} />
+            <Route exact path='/notes' component={Notes} />
             <Route exact path='/notes/:id' component={NoteReader} />
 
             <Route exact path='/people/:id' component={PeopleView} />

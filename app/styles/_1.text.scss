@@ -342,7 +342,7 @@ em,
 }
 
 .rounded { border-radius: $border_radius; }
-.bordered { border-radius: $border_radius; border: 1px solid $grey--light; }
+.bordered { border-radius: $border_radius; border: 1px solid $grey; }
 .shadowed { box-shadow: 0 0 $base_size/2 fade-out($black, 0.9); }
 
 

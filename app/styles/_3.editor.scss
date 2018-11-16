@@ -10,6 +10,10 @@
   font-family: $body_font;
   font-size: $base_size;
 
+  .editor--alternate & {
+    font-size: $medium_size;
+  }
+
   &.ql-snow {
     border: none;
   }
@@ -18,10 +22,10 @@
   .ql-snow .ql-editor {
     line-height: inherit;
     padding: 0;
-    margin-bottom: $rythm*2;
+    margin-bottom: $rythm*3;
 
     &.ql-blank::before {
-      color: $grey--dark;
+      color: $grey;
       font-style: normal;
       left: 0;
     }

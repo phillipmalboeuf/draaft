@@ -2,7 +2,7 @@
 import { db } from '../clients/firebase'
 
 export type Properties = { [key: string]: any }
-export type Filters =  [string, '<' | '<=' | '==' | '>=' | '>', any][]
+export type Filters =  [string, '<' | '<=' | '==' | '>=' | '>' | 'array-contains', any][]
 export type Sort = { [key: string]: 1 | -1 }
 
 export type Id = string

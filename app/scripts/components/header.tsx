@@ -51,6 +51,7 @@ export class Header extends React.PureComponent<Props & AuthContextProps, State>
             {this.props.context.user
             ? <>
               <Link to='/me' className='underline'>Your chapters</Link><br />
+              <Link to='/notes' className='underline'>Your notes</Link><br />
               <Link to='/new_chapter' className='underline'>Write a new entry</Link><br />
               <Link to='/logout' className='underline'>Logout</Link><br />
             </>

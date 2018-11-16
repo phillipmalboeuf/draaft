@@ -1,6 +1,11 @@
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /books/{chapter} {
+    match /people/{person} {
+      allow read;
+      allow create;
+      allow update: if request.auth.uid == resource.id;
+    }
+    match /books/{book} {
       allow read: if resource.data.public || request.auth.uid == resource.data.user;
       allow create: if request.auth.uid == request.resource.data.user;
       allow update: if request.auth.uid == resource.data.user;
@@ -11,6 +16,11 @@ service cloud.firestore {
       allow create: if request.auth.uid == request.resource.data.user;
       allow update: if request.auth.uid == resource.data.user;
       allow delete: if request.auth.uid == resource.data.user;
+    }
+    match /notes/{note} {
+      allow read;
+      allow create: if request.auth.uid == request.resource.data.correspondents[0];
+      allow delete: if request.auth.uid == resource.data.correspondents[0] || request.auth.uid == resource.data.correspondents[1];
     }
   }
 }

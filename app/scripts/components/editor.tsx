@@ -10,7 +10,8 @@ interface Props extends DBContextProps {
   delta?: Delta,
   onChange?: (delta: Delta)=> void,
   placeholder?: string,
-  readOnly?: boolean
+  readOnly?: boolean,
+  alternate?: boolean
 }
 interface State {}
 
@@ -39,13 +40,13 @@ export class Editor extends React.PureComponent<Props, State> {
     this.change = this.change.bind(this)
     this.select = this.select.bind(this)
     this.editor.on('text-change', this.change)
-    this.editor.on('selection-change', this.select)
+    !this.props.readOnly && this.editor.on('selection-change', this.select)
     this.props.delta && this.editor.setContents(this.props.delta, 'silent')
   }
 
   componentWillUnmount() {
     this.editor.off('text-change', this.change)
-    this.editor.off('selection-change', this.select)
+    !this.props.readOnly && this.editor.off('selection-change', this.select)
     delete this.editor
   }
 
@@ -54,7 +55,6 @@ export class Editor extends React.PureComponent<Props, State> {
   }
 
   private select(range: { index: number, length: number }) {
-    
     let toolbar = this.container.getElementsByClassName('ql-toolbar')[0]
     if (range && range.length > 0) {
       let bounds = this.editor.getBounds(range.index, range.length)
@@ -81,7 +81,7 @@ export class Editor extends React.PureComponent<Props, State> {
   }
 
   public render() {
-    return <div className='editor' ref={element => this.container = element}>
+    return <div className={`editor${this.props.alternate ? ' editor--alternate' : ''}`} ref={element => this.container = element}>
       <div ref={element => this.element = element} />
     </div>
   }

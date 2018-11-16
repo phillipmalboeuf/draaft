@@ -47,7 +47,7 @@ textarea,
   position: relative;
   width: 100%;
 
-  font-family: $alternate_font;
+  font-family: $body_font;
   font-size: $slight_size;
   font-weight: normal;
   line-height: 1.2;
@@ -76,12 +76,10 @@ textarea,
     padding-top: $rythm*1.666;
   }
 
+  &.input--disabled,
   &:disabled,
   form:disabled & {
-    opacity: 0.8;
-    background: transparent;
-    border: none;
-
+    opacity: 0.88;
     pointer-events: none;
   }
 
