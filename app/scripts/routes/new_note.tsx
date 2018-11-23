@@ -37,7 +37,8 @@ export class NewNote extends React.PureComponent<Props, State> {
   public render() {
     return <div className='padded bordered max_width'>
       {this.props.context.user && this.state.person && <Form id='new_note' model={Note} values={{
-        correspondents: [this.props.context.user.uid, this.state.person.id]
+        from: this.props.context.user.uid, 
+        to: this.state.person.id
       }} cta='Send'>
         {/* <Input disabled alternate name='to' label='To' /> */}
         <label className='label--alternate'>To:</label> <div className='input input--alternate input--disabled'>{this.state.person && this.state.person.email}</div>

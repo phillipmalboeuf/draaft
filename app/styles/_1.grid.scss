@@ -117,6 +117,10 @@
       align-self: flex-end;
     }
 
+    &.col--scroll {
+      overflow-x: auto;
+    }
+
     @for $i from 1 through $number_of_columns { 
       &.col--#{$i}of#{$number_of_columns} { width: (100% / $number_of_columns * $i); }
     }

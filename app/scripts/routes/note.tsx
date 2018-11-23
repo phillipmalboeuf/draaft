@@ -44,9 +44,13 @@ export class NoteReader extends React.PureComponent<Props, State> {
       
       {this.props.context.user && <Grid guttered>
         <ThreeQuarters>
+          <p><Link to='/notes' className='underline'>Back to notes</Link></p>
+          <strong>From {this.state.note.from === this.props.context.auth.currentUser.uid ? 'me' : this.state.note.from} to {this.state.note.to === this.props.context.auth.currentUser.uid ? 'me' : this.state.note.to}</strong>
           <h1>{this.state.note.subject}</h1>
           <Editor readOnly delta={this.state.note.contents} />
-          <em>{this.state.note.signature}</em>
+          <p><em>{this.state.note.signature}</em></p>
+
+          <Link to={`/new_note?to=${this.state.note.from === this.props.context.auth.currentUser.uid ? this.state.note.to : this.state.note.from}`} className='underline'>{this.state.note.from === this.props.context.auth.currentUser.uid ? 'Send another note' : 'Write a reply'}</Link>
         </ThreeQuarters>
 
         <Quarter>

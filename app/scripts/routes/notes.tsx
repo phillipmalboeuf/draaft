@@ -18,7 +18,10 @@ type Props = DBContextProps & AuthContextProps & {
   empty?: JSX.Element
 }
 type State = {
-  notes: any[],
+  stacks: {
+    correspondent: string,
+    notes: any[]
+  }[]
 }
 
 @withDBContext
@@ -28,7 +31,7 @@ export class Notes extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props)
     this.state = {
-      notes: null
+      stacks: null
     }
   }
 
@@ -46,24 +49,43 @@ export class Notes extends React.PureComponent<Props, State> {
   }
 
   public fetchNotes() {
-    return Note.list([['correspondents', 'array-contains', this.props.context.user.uid]]).then(notes => this.setState({ notes }))
+    Promise.all([
+      Note.list([['from', '==', this.props.context.user.uid]]),
+      Note.list([['to', '==', this.props.context.user.uid]])
+    ]).then(([from, to]) => {
+      let stacks = {} as {[key: string]: any[]}
+      from.forEach(note => {
+        if (!stacks[note.to]) { stacks[note.to] = [] }
+        stacks[note.to].push(note)
+      })
+
+      to.forEach(note => {
+        if (!stacks[note.from]) { stacks[note.from] = [] }
+        stacks[note.from].push(note)
+      })
+
+      this.setState({ stacks: Object.keys(stacks).map(id => ({
+        correspondent: id,
+        notes: stacks[id]
+      })) })
+    })
   }
 
   public render() {
-    return this.state.notes && (this.state.notes.length > 0
-      ? this.state.notes.map(note => <div className='medium_bottom' key={note.id}>
+    return this.state.stacks && (this.state.stacks.length > 0
+      ? this.state.stacks.map(stack => <div className='medium_bottom' key={stack.correspondent}>
         <Grid guttered spaced>
-          <Col size='1of12'>
-            {note.to}
+          <Col size='2of12 col--scroll'>
+            <Link to={`/people/${stack.correspondent}`}>{stack.correspondent}</Link>
           </Col>
           <TwoThirds>
-            <Link className='slight' to={`/notes/${note.id}`}>
+            {stack.notes.map(note => <Link className='slight' to={`/notes/${note.id}`}>
               <p>
                 {note.subject}
               </p>
-            </Link>
+            </Link>)}
           </TwoThirds>
-          <Col size='1of12'>{note.date}</Col>
+          <Col size='1of12'>{stack.notes[stack.notes.length - 1].date}</Col>
         </Grid>
       </div>)
       : this.props.empty || <em>No notes yet...</em>)
